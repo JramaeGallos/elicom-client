@@ -1,0 +1,10 @@
+.custom-pagination .page-link {
+    color: #0056b3; /* Change the text color */
+    background-color: #ffffff; /* Change the background color */
+    border-color: #e8e9e9; /* Change the border color */
+  }
+  
+  .custom-pagination .page-item.active .page-link {
+    background-color: #28588C; /* Change the active page background color */
+     border-color: #28588C; /* Change the active page border color */
+}

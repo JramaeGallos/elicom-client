@@ -1,0 +1,12 @@
+export {default as DashboardPage} from "./dashboard/DashboardPage";
+export {default as StudentEnrollmentR} from "./R_studentEnrollment/r_studentEnrollment";
+export {default as ManageRecordR} from "./R_manageRecord/r_manageRecord";
+export {default as InstructRecordR} from "./R_instructorRecord/r_instructorRecord";
+export {default as ClearanceAdminR} from "./R_clearanceAdmin/r_cleranceAdmin";
+export {default as EnrollmentS} from "./S_enrollment/s_enrollment"
+export {default as RecordS} from "./S_record/s_record"
+export {default as MyClassI} from "./I_myclass/i_myclass"
+export {default as StudentRecordC} from "./C_studentRecord/c_studentrecord"
+export {default as Login} from "./login/login"
+export {default as UserProfile} from "./profile/userProfile"
+export {default as PreRegistrationForm} from "./S_enrollment/s_preregistratioForm"

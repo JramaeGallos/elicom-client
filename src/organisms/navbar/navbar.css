@@ -1,0 +1,13 @@
+.navbar-container{
+    background: #5D8AA8;
+}
+
+.logo{
+    width: 100%;
+    height: 100%;
+}
+
+.logo-button{
+    max-width: 30px;
+    max-height: 30px;
+}
