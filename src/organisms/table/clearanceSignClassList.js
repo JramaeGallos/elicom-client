@@ -84,7 +84,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =
     }
 
     const handleRecord = (studentId) =>{
-        axios.post("http://localhost:3001/clearance-remark/update-record",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearance-remark/update-record",
         {
             StudentAccountId: studentId,
             ClearanceSignAccountId: ClearanceSignAccountId,
@@ -109,7 +109,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =
     }
 
     const submitRemark = (studentId, remark) =>{
-        axios.post("http://localhost:3001/clearance-remark/update-remark",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearance-remark/update-remark",
             {
                 StudentAccountId: studentId,
                 ClearanceSignAccountId: ClearanceSignAccountId,
@@ -126,7 +126,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =
 
       //function for 'select all row' 
     const handleCheckAllRecord=()=>{
-        axios.post("http://localhost:3001/clearance-remark/update-all-record",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearance-remark/update-all-record",
         {
             studentIdList: studentIdArray,
             ClearanceSignAccountId: ClearanceSignAccountId

@@ -51,7 +51,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
     }
 
     const submit =()=>{
-        axios.post("http://localhost:3001/registrar-remark/update-remark",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/registrar-remark/update-remark",
         {
             StudentAccountId: statusData.id,
             RegistrarAccountId: registrarId,
@@ -76,7 +76,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
     };
 
     useEffect(()=>{
-        axios.post("http://localhost:3001/registrar-remark/get-remark",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/registrar-remark/get-remark",
         {
             StudentAccountId: statusData.id,
             RegistrarAccountId: registrarId,
@@ -106,7 +106,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
 
         if(state){
             if(title === "clearance"){
-                axios.post("http://localhost:3001/update/clear-record-clearance",
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/clear-record-clearance",
                 {
                     id: statusData.id,
                     isClearRecordClear: true
@@ -121,7 +121,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
                 })
 
             }else if(title === "test permit"){
-                axios.post("http://localhost:3001/update/clear-record-instructor",
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/clear-record-instructor",
                 {
                     id: statusData.id,
                     isClearRecordInst: true

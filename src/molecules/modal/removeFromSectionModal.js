@@ -26,7 +26,7 @@ const RemoveFromSectionModal = ({handleCloseRemove, userId, sectionId, type}) =>
 
     const submit =()=>{
         if(type===1){ //student
-            const url = "http://localhost:3001/enroll/remove"
+            const url = "https://elicom-server-5013ed31e994.herokuapp.com/enroll/remove"
 
             const data = {SectionListId: sectionId, StudentAccountId: userId}
 
@@ -39,7 +39,7 @@ const RemoveFromSectionModal = ({handleCloseRemove, userId, sectionId, type}) =>
                     console.log(error)
                 })
         }else if(type===2){ //instructor
-            const url = "http://localhost:3001/instructor-section/remove"
+            const url = "https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/remove"
 
             const data = {SectionListId: sectionId, InstructorAccountId: userId}
 

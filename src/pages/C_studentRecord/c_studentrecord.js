@@ -44,7 +44,7 @@ const StudentRecordC =()=>{
         setDegProgVal(event.target.value)
         setSectVal("")
         
-        axios.post("http://localhost:3001/clearanceSign/section-list",{yearLevel: yearLevelVal, degreeCode: event.target.value})
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearanceSign/section-list",{yearLevel: yearLevelVal, degreeCode: event.target.value})
         .then(function(response){
             setSectList(response.data)
         })
@@ -60,7 +60,7 @@ const StudentRecordC =()=>{
             setSectVal(event.target.value)
 
             if(event.target.value){
-                axios.post("http://localhost:3001/clearanceSign/class-list",{SectionListId : event.target.value, ClearanceSignAccountId: userId})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearanceSign/class-list",{SectionListId : event.target.value, ClearanceSignAccountId: userId})
                 .then(function(response){
                     setClassList(response.data)
                 })
@@ -70,7 +70,7 @@ const StudentRecordC =()=>{
             }
         // refresh component
         }else{
-            axios.post("http://localhost:3001/clearanceSign/class-list",{SectionListId : sectVal, ClearanceSignAccountId: userId})
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearanceSign/class-list",{SectionListId : sectVal, ClearanceSignAccountId: userId})
             .then(function(response){
                 setClassList(response.data)
                 console.log(response.data)

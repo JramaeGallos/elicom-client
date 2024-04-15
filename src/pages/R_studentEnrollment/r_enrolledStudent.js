@@ -17,7 +17,7 @@ const EnrolledStudentR =()=>{
 
 
     useEffect(()=>{
-        axios.get("http://localhost:3001/get-student/enrolled")
+        axios.get("https://elicom-server-5013ed31e994.herokuapp.com/get-student/enrolled")
         .then(function(response){
             setLoading(false)
             setListOfUser(response.data)

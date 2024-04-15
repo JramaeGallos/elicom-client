@@ -24,7 +24,7 @@ const RecordS =()=>{
             
             if (result) {
 
-                axios.post("http://localhost:3001/update/data",{id: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: result.id})
                 .then(function(response){
                     setIsNewStudent(response.data.isNewStudent)
 
@@ -38,7 +38,7 @@ const RecordS =()=>{
                 })
 
 
-                axios.post("http://localhost:3001/student-remark/list",{StudentAccountId: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/student-remark/list",{StudentAccountId: result.id})
                 .then(function(response){
                     setInstRemarkList(response.data.instructorData)
                     setClearRemarkList(response.data.ClearanceData)

@@ -28,7 +28,7 @@ const SourceListR =()=>{
     useEffect(()=>{
         console.log(type)
         if(type===1){
-            axios.get("http://localhost:3001/get-student/enrolled-no-section-regular")
+            axios.get("https://elicom-server-5013ed31e994.herokuapp.com/get-student/enrolled-no-section-regular")
             .then(function(response){
                 setListOfUser(response.data)
                 setLoading(false)
@@ -37,7 +37,7 @@ const SourceListR =()=>{
                 console.log(error)
             })
         }else if(type===2){
-            axios.get("http://localhost:3001/getUser/instructor")
+            axios.get("https://elicom-server-5013ed31e994.herokuapp.com/getUser/instructor")
             .then(function(response){
                 setListOfUser(response.data)
                 setLoading(false)

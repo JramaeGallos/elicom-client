@@ -25,7 +25,7 @@ const EnrollModal = ({handleCloseEnroll, id, status}) =>{
     }
 
     const submit =()=>{
-        axios.post("http://localhost:3001/update/enroll", {id: id, isEnrolled: true})
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/enroll", {id: id, isEnrolled: true})
         .then(function(response){
             console.log(response.data)
             window.location.reload(false);

@@ -41,7 +41,7 @@ const Login =()=>{
         e.preventDefault()
         const data = {password: password, email: email}
 
-        axios.post("http://localhost:3001/login", data)
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login", data)
             .then(function(response){
                 if (response.data.error){
                     setErrorMessage(response.data.error)
@@ -65,7 +65,7 @@ const Login =()=>{
     const verifyCode = () =>{
         const data = {email: email, verificationToken: verificationToken, userType: userType}
 
-        axios.post("http://localhost:3001/email/verify", data)
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/email/verify", data)
             .then(function(response){
                 if (response.data.error){
                     setErrorMessage(response.data.error)
@@ -93,7 +93,7 @@ const Login =()=>{
             setLoading(true)
             setEmailForChange(emailToChange)
 
-            axios.post("http://localhost:3001/email/forgot-pass", {email: emailToChange})
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/email/forgot-pass", {email: emailToChange})
             .then(function(response){
                 setSnackbarState(true)
                 setLoading(false)
@@ -119,7 +119,7 @@ const Login =()=>{
         if(status){
             setLoading(true)
 
-            axios.post("http://localhost:3001/email/reset-pass", {
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/email/reset-pass", {
                 email: emailForChange,
                 password: newPass,
                 verificationToken: verification

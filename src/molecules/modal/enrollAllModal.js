@@ -31,7 +31,7 @@ const EnrollAllModal = ({handleCloseEnrollAll, selectedRows, data, validEnrollme
         }
 
         for (const id of selectedRowId){
-            axios.post("http://localhost:3001/update/enroll", {id: id, isEnrolled: true})
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/enroll", {id: id, isEnrolled: true})
             .then(function(response){
                 console.log(response.data)
             })

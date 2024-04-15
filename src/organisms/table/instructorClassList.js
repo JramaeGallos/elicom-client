@@ -90,7 +90,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     }
 
     const handleMT = (studentId)=>{
-        axios.post("http://localhost:3001/inst-remark/update-mt",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-mt",
             {
                 StudentAccountId: studentId,
                 InstructorAccountId: InstructorAccountId,
@@ -105,7 +105,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     }
 
     const handleFinal = (studentId)=>{
-        axios.post("http://localhost:3001/inst-remark/update-final",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-final",
             {
                 StudentAccountId: studentId,
                 InstructorAccountId: InstructorAccountId,
@@ -129,7 +129,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     }
 
     const submitRemark = (studentId, remark) =>{
-        axios.post("http://localhost:3001/inst-remark/update-remark",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-remark",
             {
                 StudentAccountId: studentId,
                 InstructorAccountId: InstructorAccountId,
@@ -147,7 +147,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
      //function for 'select all row' 
      const handleCheckAllMT=()=>{
 
-        axios.post("http://localhost:3001/inst-remark/update-all-mt",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-all-mt",
         {
             studentIdList: studentIdArray,
             InstructorAccountId: InstructorAccountId
@@ -162,7 +162,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
      }
 
     const handleCheckAllFinal=()=>{
-        axios.post("http://localhost:3001/inst-remark/update-all-final",
+        axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-all-final",
         {
             studentIdList: studentIdArray,
             InstructorAccountId: InstructorAccountId

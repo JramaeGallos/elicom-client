@@ -27,7 +27,7 @@ const ChangeStudTypeModal = ({handleClose, typeStatus, id}) =>{
     }
 
     const submit =()=>{
-        const url = "http://localhost:3001/update/change-type"
+        const url = "https://elicom-server-5013ed31e994.herokuapp.com/update/change-type"
 
         axios.post(url, {id: id, isRegular: typeStatus})
             .then(function(response){

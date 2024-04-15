@@ -62,7 +62,7 @@ const ViewSectionModal = ({
     }
 
     const addSection=()=>{
-        const url = "http://localhost:3001/section/create"
+        const url = "https://elicom-server-5013ed31e994.herokuapp.com/section/create"
 
         const data ={
             degreeCode:degreeCode,
@@ -91,7 +91,7 @@ const ViewSectionModal = ({
 
     const handleCloseModal=(status, id)=>{
         if(status===true){
-            const url = "http://localhost:3001/section/delete"
+            const url = "https://elicom-server-5013ed31e994.herokuapp.com/section/delete"
 
             const data ={id:id}
             axios.post(url, data)

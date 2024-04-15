@@ -46,7 +46,7 @@ const Navbar = ({getStatus}) => {
 
     useEffect(()=>{
         const fetchStatus=async()=>{
-            await axios.get("http://localhost:3001/management/get-status")
+            await axios.get("https://elicom-server-5013ed31e994.herokuapp.com/management/get-status")
             .then(function(response){
             setEnrollmentStatus(response.data.isOpenEnrollment)
             setTransactionStatus(response.data.isOpenTransaction)

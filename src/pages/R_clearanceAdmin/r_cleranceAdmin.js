@@ -41,7 +41,7 @@ const ClearanceAdminR =()=>{
 
             console.log(data)
 
-            axios.post("http://localhost:3001/login/register-clearanceSign", data)
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login/register-clearanceSign", data)
                 .then(function(response){
                     if (response.data.error){
                         console.log(response.data.error)
@@ -63,7 +63,7 @@ const ClearanceAdminR =()=>{
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:3001/getUser/clearanceSign")
+        axios.get("https://elicom-server-5013ed31e994.herokuapp.com/getUser/clearanceSign")
         .then(function(response){
             setListOfUser(response.data)
             setLoading(false)

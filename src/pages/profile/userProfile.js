@@ -40,7 +40,7 @@ const UserProfile = () =>{
         const getData = async () => {
             
             if (userData.userType === "student") {
-                axios.post("http://localhost:3001/update/data",{id: userData.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: userData.id})
                 .then(function(response){
                     console.log(response.data)
                     setInfo(response.data)
@@ -51,7 +51,7 @@ const UserProfile = () =>{
                 })
             }
             else if(userData.userType === "clearanceSign"){
-                axios.post("http://localhost:3001/getUser/clearanceSign-dataById",{id: userData.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/getUser/clearanceSign-dataById",{id: userData.id})
                 .then(function(response){
                     console.log(response.data)
                     setInfo(response.data)
@@ -62,7 +62,7 @@ const UserProfile = () =>{
                 })
             }
             else if(userData.userType === "instructor"){
-                axios.post("http://localhost:3001/getUser/instructor-dataById",{id: userData.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/getUser/instructor-dataById",{id: userData.id})
                 .then(function(response){
                     console.log(response.data)
                     setInfo(response.data)
@@ -72,7 +72,7 @@ const UserProfile = () =>{
                     console.log(error)
                 })
             }else if(userData.userType === "registrar"){
-                axios.post("http://localhost:3001/getUser/registrar-dataById",{id: userData.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/getUser/registrar-dataById",{id: userData.id})
                 .then(function(response){
                     console.log(response.data)
                     setInfo(response.data)

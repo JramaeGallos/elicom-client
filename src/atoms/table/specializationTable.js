@@ -32,7 +32,7 @@ const SpecializationTable = ({open, majorList, yearLevel, yearLevelNum, degreeCo
         setDegMajor(majorDescList[index])
         setDegMajorCode(majorCodeList[index])
    
-        const url = "http://localhost:3001/section/list"
+        const url = "https://elicom-server-5013ed31e994.herokuapp.com/section/list"
 
         const data ={degreeCode:degreeCode, specializationCode: majorCodeList[index],yearLevel: yearLevel}
         axios.post(url, data)

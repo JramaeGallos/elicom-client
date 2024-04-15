@@ -77,7 +77,7 @@ const CollapseTable = ({open, yearLevel, isOpenTransaction}) =>{
         setDegDesc(degreeDescList[index])
         setDegProg(degreeCode)
 
-        const url = "http://localhost:3001/section/list"
+        const url = "https://elicom-server-5013ed31e994.herokuapp.com/section/list"
 
         const data ={degreeCode:degreeCode, specializationCode: null, yearLevel: getYearLevel()}
         axios.post(url, data)

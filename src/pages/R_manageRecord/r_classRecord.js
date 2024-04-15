@@ -32,7 +32,7 @@ const ClassRecordR =()=>{
     useEffect(()=>{
         const data = {SectionListId: sectionId}
 
-        const url1 = "http://localhost:3001/enroll/list"
+        const url1 = "https://elicom-server-5013ed31e994.herokuapp.com/enroll/list"
         axios.post(url1, data)
         .then(function(response){
             console.log("SUCCESS - Student List")
@@ -43,7 +43,7 @@ const ClassRecordR =()=>{
             console.log(error)
         })
 
-        const url2 = "http://localhost:3001/instructor-section/list"
+        const url2 = "https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/list"
         axios.post(url2, data)
         .then(function(response){
             console.log("SUCCESS - Instructor List")

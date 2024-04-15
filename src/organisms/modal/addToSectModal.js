@@ -26,7 +26,7 @@ const AddToSectModal = ({handleCloseModal, valid, classToBeAdded, sectionId, yea
 
     const submit =()=>{
         if(type===1){
-            const url = "http://localhost:3001/enroll/add"
+            const url = "https://elicom-server-5013ed31e994.herokuapp.com/enroll/add"
         
             for (const StudentAccountId of classToBeAdded){
                 const data= {SectionListId: sectionId, StudentAccountId: StudentAccountId}
@@ -40,7 +40,7 @@ const AddToSectModal = ({handleCloseModal, valid, classToBeAdded, sectionId, yea
                 })
             }
         }else if(type===2){
-            const url = "http://localhost:3001/instructor-section/add"
+            const url = "https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/add"
         
             for (const InstructorAccountId of classToBeAdded){
                 const data= {SectionListId: sectionId, InstructorAccountId: InstructorAccountId}

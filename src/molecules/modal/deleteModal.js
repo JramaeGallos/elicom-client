@@ -25,7 +25,7 @@ const DeleteUserModal = ({handleClose, id, userType}) =>{
     }
 
     const submit =()=>{
-        const url = "http://localhost:3001/delete/"+userType
+        const url = "https://elicom-server-5013ed31e994.herokuapp.com/delete/"+userType
 
         axios.post(url, {id: id})
             .then(function(response){

@@ -40,7 +40,7 @@ const InstructRecordR =()=>{
 
             console.log(data)
 
-            axios.post("http://localhost:3001/login/register-instructor", data)
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login/register-instructor", data)
                 .then(function(response){
                     if (response.data.error){
                         console.log(response.data.error)
@@ -62,7 +62,7 @@ const InstructRecordR =()=>{
     }
 
     useEffect(()=>{
-        axios.get("http://localhost:3001/getUser/instructor")
+        axios.get("https://elicom-server-5013ed31e994.herokuapp.com/getUser/instructor")
         .then(function(response){
             setLoading(false)
             setListOfUser(response.data)

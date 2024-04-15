@@ -63,7 +63,7 @@ const EnrollmentS =()=>{
             if (result) {
                 setStudentId(result.id)
 
-                axios.post("http://localhost:3001/update/data",{id: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: result.id})
                 .then(function(response){
 
                     setStudentData(response.data)

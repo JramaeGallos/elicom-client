@@ -120,7 +120,7 @@ const PreRegistrationForm = () =>{
             setLoading(true)
             const data = {...formData, id:studentId}
 
-            axios.post("http://localhost:3001/update/preregister",data)
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/preregister",data)
             .then(function(response){
 
                 setLoading(false)

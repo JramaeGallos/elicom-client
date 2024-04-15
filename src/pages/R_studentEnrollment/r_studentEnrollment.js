@@ -49,7 +49,7 @@ const StudentEnrollmentR =()=>{
                 email: userInput.email,
             }
 
-            axios.post("http://localhost:3001/login/register-student", data)
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login/register-student", data)
                 .then(function(response){
                     if (response.data.error){
                         console.log(response.data.error)
@@ -77,7 +77,7 @@ const StudentEnrollmentR =()=>{
         }
         getData()
 
-        axios.get("http://localhost:3001/get-student/not-enrolled")
+        axios.get("https://elicom-server-5013ed31e994.herokuapp.com/get-student/not-enrolled")
         .then(function(response){
             setLoading(false)
             setListOfUser(response.data)

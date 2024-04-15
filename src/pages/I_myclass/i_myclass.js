@@ -25,7 +25,7 @@ const MyClassI =()=>{
         if (type=== 1){
             setSectionVal(event.target.value)
 
-            axios.post("http://localhost:3001/instructor-section/class-list",
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/class-list",
                 {SectionListId: event.target.value, InstructorAccountId: userId})
                     .then(function(response){
                         setClassList(response.data)
@@ -35,7 +35,7 @@ const MyClassI =()=>{
                     })
         // refresh component
         }else{
-            axios.post("http://localhost:3001/instructor-section/class-list",
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/class-list",
                 {SectionListId: sectionVal, InstructorAccountId: userId})
                     .then(function(response){
                         setClassList(response.data)
@@ -53,7 +53,7 @@ const MyClassI =()=>{
             if (result) {
                 setUserId(result.id)
 
-                axios.post("http://localhost:3001/instructor-section/section-list",{InstructorAccountId: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/section-list",{InstructorAccountId: result.id})
                 .then(function(response){
                     setSectList(response.data)
                     setLoading(false)
