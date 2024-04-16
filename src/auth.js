@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export function getUserAuth(){
-    return axios.get("http://localhost:3001/auth")
+    return axios.get("https://elicom-server-5013ed31e994.herokuapp.com/auth") 
         .then(function(response){
             if (response.data.error){
                 console.log(response.data.error)
@@ -18,7 +18,7 @@ export function getUserAuth(){
 }
 
 export function userLogout(){
-    return axios.get("http://localhost:3001/auth/logout")
+    return axios.get("https://elicom-server-5013ed31e994.herokuapp.com/auth/logout")
         .then(function(response){
             if (response.data.success){
                 console.log(response.data)
