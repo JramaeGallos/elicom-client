@@ -8,7 +8,7 @@ export function getUserAuth(){
                 return null
                 
             }else{
-                console.log("User Authenticated")
+                console.log("User Authenticated") 
                 return response.data
             }
         })

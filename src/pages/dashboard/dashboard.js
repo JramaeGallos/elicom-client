@@ -23,7 +23,7 @@ const DashboardPage = () => {
             const result = await getUserAuth()
             
             if (result) {
-               console.log(result)
+               console.log(result) 
                setUserData(result)
             }
         }
