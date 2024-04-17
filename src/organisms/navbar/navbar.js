@@ -7,7 +7,8 @@ import {
     Typography, 
     Box, 
     Button,
-    Tooltip
+    Tooltip,
+    ThemeProvider
 } from '@mui/material'
 import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -17,7 +18,10 @@ import {getUserAuth, userLogout} from '../../auth'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {LogoutModal} from "../../molecules"
+import { createTheme } from '@mui/material/styles';
+
 var logo = require('../../assets/logo.png')
+
 
 
 const Navbar = ({getStatus}) => {
@@ -94,7 +98,22 @@ const Navbar = ({getStatus}) => {
         }
     
         setState({ ...state, [anchor]: open });
-    };
+    }; 
+
+    
+    const theme = createTheme({
+        typography: {
+          h6: {
+            fontSize: 22, // Default font size
+            '@media (max-width:600px)': {
+              fontSize: 18, // Adjust font size for screens smaller than 600px
+            },
+            '@media (max-width:400px)': {
+              fontSize: 14, // Adjust font size for screens smaller than 400px
+            },
+          },
+        },
+      });
 
     return(
         <div> 
@@ -107,20 +126,27 @@ const Navbar = ({getStatus}) => {
                         aria-label="viewButton"
                         onClick={toggleDrawer('left', true)}
                     > 
-                        <ViewHeadlineIcon/>
+                    
+                    <ViewHeadlineIcon/>
                     </IconButton>
-                    <Button className="logo-button" onClick={()=>{navigate('/dashboard')}}>
-                        <img className="logo" src={logo} alt="logo" />
-                    </Button>
-                    <Typography 
-                        sx={{ flexGrow:1}} 
-                        fontFamily={"Segoe UI"} 
-                        fontSize={22}  
-                        variant='h6' 
-                        align="left"> 
-                        Libon Community College
-                    </Typography>
-                    <Box>
+
+                    <Box display="flex" flexDirection="row" alignItems="center" sx={{ flexGrow:1}} >
+                        <Button className="logo-button" onClick={()=>{navigate('/dashboard')}}>
+                            <img className="logo" src={logo} alt="logo" />
+                        </Button>
+                        <ThemeProvider theme={theme}>
+                            <Typography  
+                                fontFamily={"Segoe UI"} 
+                                // fontSize={22}  
+                                // variantMapping={variantMapping}
+                                variant='h6' 
+                                align="left"> 
+                                Libon Community College
+                            </Typography>
+                        </ThemeProvider>
+                    </Box>
+
+                    <Box display="flex" flexDirection="row" alignItems="center">
                         <Tooltip title="Profile">
                             <Button color="inherit" onClick={profile}> <AccountCircleIcon /> {username} </Button>
                         </Tooltip>

@@ -72,7 +72,9 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                 justifyContent: 'center',
                 alignItems: 'center',
                 }}> 
-            <TableContainer elevation={2} style={{width:"1200px", marginTop: "20px"}} component={Paper}>
+            <Container style={{width:"1200px", boxShadow: 2,  marginTop: "10px", marginLeft: "20px", marginRight: "20px"}} 
+            elevation={2} >
+            <TableContainer component={Paper}>
             <Table size="small">
                 <TableHead>
                     <TableRow>
@@ -162,6 +164,7 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                 </TableBody>
             </Table>
             </TableContainer>
+            </Container>
             {/* table pagination */}
             <Container style={{marginTop:"10px", width:"1200px"}} >
                 <Row >

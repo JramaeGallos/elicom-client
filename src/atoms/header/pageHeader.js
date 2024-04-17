@@ -13,7 +13,7 @@ const PageHeader = ({title}) => {
                 fontSize={18} 
                 fontWeight={"bold"}
                 color={"#6D6262"} 
-                style={{marginTop: 30, position: 'relative', left: 120}}
+                style={{marginTop: 30, position: 'relative', marginLeft: "10%"}}
             >
                 {title}
             </Typography>

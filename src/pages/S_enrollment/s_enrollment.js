@@ -10,7 +10,8 @@ import {
     Tooltip,
     Typography,
     Paper,
-    Container
+    Container,
+    Grid
 } from "@mui/material";
 import { useNavigate, useLocation} from 'react-router-dom';
 
@@ -100,7 +101,7 @@ const EnrollmentS =()=>{
                         <Box style={{boxShadow: 4 }} display="flex" justifyContent="center" alignItems="center">
                             <Container 
                                 style={{width:"1200px", backgroundColor: "#E3ECF5", paddingTop:"10px", paddingBottom:"10px", boxShadow: 2}} 
-                                sx={{ marginTop: "10px",}} component={Paper}
+                                sx={{ marginTop: "10px", marginLeft: "20px", marginRight: "20px"}} component={Paper}
                             >
                                 <Typography fontFamily={"Segoe UI"} fontSize={16}  color={"#6D6262"}  >
                                     <b> Enrolled Subjects: </b>
@@ -140,11 +141,19 @@ const EnrollmentS =()=>{
                                 <ReminderCard title={"Please settle your outstanding records first to pre-register."} />
                             }
                             {(isNewStudent || completeRemark) && // for clear records
-                                <Box  sx={{ marginTop: "20px"}} display="flex" justifyContent="center" alignItems="center">
+                                <Box  sx={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px"}}>
+                                    <Grid
+                                        container
+                                        spacing={2}
+                                        justifyContent="center"
+                                        alignItems="center"
+                                    >
+                                    <Grid item xs={10} sm={4}>
                                     <Tooltip title={"Fill out Pre-registration Form"}>
                                         <Button 
                                             variant="contained" 
-                                            style = {{width: 350, backgroundColor: "#28588C"}}
+                                            fullWidth
+                                            style = {{ backgroundColor: "#28588C"}}
                                             onClick={()=>{navigate('/pre-register', 
                                                 {
                                                     state:{
@@ -157,6 +166,8 @@ const EnrollmentS =()=>{
                                                 Pre-Register
                                         </Button>
                                     </Tooltip>
+                                    </Grid>
+                                    </Grid>
                                 </Box>
                             }
                         </div>

@@ -95,7 +95,7 @@ const UserProfile = () =>{
                 <Box style={{boxShadow: 4,  paddingTop:20}} display="flex" justifyContent="center" alignItems="center">
                     <Container 
                         style={{width:"1200px", backgroundColor: "#E3ECF5", paddingTop:"10px", paddingBottom:"10px", boxShadow: 2}} 
-                        sx={{ marginTop: "10px",}} component={Paper}
+                        sx={{ marginTop: "10px",  marginLeft: "20px", marginRight: "20px"}} component={Paper}
                     >
                     <Grid container spacing={2}>
                         <Grid  item xs={12} sm={6} md={2}>
