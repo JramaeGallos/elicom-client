@@ -44,9 +44,6 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     const finalStatusArray = data.map(obj => obj.isClearedFinal);
     const allTrueFinal =  (finalStatusArray.length !==0) ? finalStatusArray.every(value => value === true) : false;
 
-    // const [isFinalMT, setIsFinalMT]= useState(false)
-    // const [isFinalFinal, setIsFinalFinal] = useState(false)
-
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: "#859BAA",

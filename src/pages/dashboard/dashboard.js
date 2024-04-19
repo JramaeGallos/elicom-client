@@ -6,7 +6,7 @@ import {Container,
         Typography
     } 
     from  "@mui/material";
-import {getUserAuth} from '../../auth'
+import {getUserAuth, getAccessToken} from '../../auth'
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import axios from "axios"
 import { LoadingComponent } from "../../atoms";
@@ -17,17 +17,16 @@ const DashboardPage = () => {
     const [enrollmentStatus, setEnrollmentStatus] = useState(undefined)
     const [transactionStatus, setTransactionStatus] = useState()
 
-
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
-            
+            const result = await getAccessToken()
+
             if (result) {
-               console.log(result) 
-               setUserData(result)
+                const data = await getUserAuth(result)
+                setUserData(data)
             }
         }
-        getData()
+        getData() 
 
         const fetchStatus=async()=>{
             await axios.get("https://elicom-server-5013ed31e994.herokuapp.com/management/get-status")
@@ -47,7 +46,7 @@ const DashboardPage = () => {
 
     return(
         <div > 
-            <Navbar />
+            <Navbar/>
             <Box style={{boxShadow: 4, paddingTop:20}} display="flex" justifyContent="center" alignItems="center">
                 <Container 
                     style={{width:"1200px", backgroundColor: "#E3ECF5", paddingTop:"10px", paddingBottom:"10px", boxShadow: 2}} 

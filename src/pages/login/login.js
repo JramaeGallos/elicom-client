@@ -35,14 +35,18 @@ const Login =()=>{
     const [responseState, setResponseState] = useState(false)
 
     const [loading, setLoading] = useState(false)
+    const [loginLoading, setLoginLoading] = useState(false)
     const [emailForChange, setEmailForChange] = useState("")
     
     const handleSubmit = (e) =>{
         e.preventDefault()
         const data = {password: password, email: email}
+        setLoginLoading(true)
 
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login", data)
             .then(function(response){
+                setLoginLoading(false)
+
                 if (response.data.error){
                     setErrorMessage(response.data.error)
                 }else{
@@ -152,7 +156,7 @@ const Login =()=>{
  
     return(
         <>
-        { (loading) ?
+        { (loading || loginLoading) ?
             <LoadingComponent/>
             :
             <Box

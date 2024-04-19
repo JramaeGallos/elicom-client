@@ -32,6 +32,7 @@ const SourceListR =()=>{
             .then(function(response){
                 setListOfUser(response.data)
                 setLoading(false)
+                console.log(response.data)
             })
             .catch(function(error){
                 console.log(error)

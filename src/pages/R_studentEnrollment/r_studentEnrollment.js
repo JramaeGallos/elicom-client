@@ -4,7 +4,7 @@ import {NoteCard} from "../../molecules"
 import {  PageHeader, LoadingComponent} from '../../atoms';
 import axios from "axios"
 import { useNavigate, useLocation} from 'react-router-dom';
-import {getUserAuth} from '../../auth'
+import {getUserAuth, getAccessToken} from '../../auth'
 
 const StudentEnrollmentR =()=>{
     const { state } = useLocation();
@@ -72,10 +72,14 @@ const StudentEnrollmentR =()=>{
 
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
-            setRegistrarId(result.id)
+            const result = await getAccessToken()
+
+            if (result) {
+                const data = await getUserAuth(result)
+                setRegistrarId(data.id)
+            }
         }
-        getData()
+        getData() 
 
         axios.get("https://elicom-server-5013ed31e994.herokuapp.com/get-student/not-enrolled")
         .then(function(response){

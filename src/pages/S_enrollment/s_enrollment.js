@@ -3,7 +3,7 @@ import { Navbar, SnackbarComp} from "../../organisms";
 import {CloseStatusCard, OpenStatusCard, ReminderCard} from "../../molecules"
 import { PageHeader, LoadingComponent} from '../../atoms';
 import axios from "axios"
-import {getUserAuth} from '../../auth'
+import {getUserAuth, getAccessToken} from '../../auth'
 import {
     Button,
     Box,
@@ -59,12 +59,13 @@ const EnrollmentS =()=>{
 
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
+            const accesstoken = await getAccessToken()
             
-            if (result) {
-                setStudentId(result.id)
+            if (accesstoken) {
+                const data = await getUserAuth(accesstoken)
+                setStudentId(data.id)
 
-                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: data.id})
                 .then(function(response){
 
                     setStudentData(response.data)

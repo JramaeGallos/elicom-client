@@ -3,7 +3,7 @@ import { Navbar} from "../../organisms";
 import { useLocation } from "react-router-dom";
 import {CloseStatusCard, ReminderCard} from "../../molecules"
 import { PageHeader, LoadingComponent } from '../../atoms';
-import {getUserAuth} from '../../auth'
+import {getUserAuth, getAccessToken} from '../../auth'
 import {StudentRemarkList} from "../../organisms"
 import axios from "axios"
 
@@ -20,11 +20,11 @@ const RecordS =()=>{
 
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
+            const accesstoken = await getAccessToken()
             
-            if (result) {
-
-                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: result.id})
+            if (accesstoken) {
+                const data = await getUserAuth(accesstoken)
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/update/data",{id: data.id})
                 .then(function(response){
                     setIsNewStudent(response.data.isNewStudent)
 
@@ -38,7 +38,7 @@ const RecordS =()=>{
                 })
 
 
-                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/student-remark/list",{StudentAccountId: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/student-remark/list",{StudentAccountId: data.id})
                 .then(function(response){
                     setInstRemarkList(response.data.instructorData)
                     setClearRemarkList(response.data.ClearanceData)

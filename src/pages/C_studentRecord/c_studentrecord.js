@@ -2,11 +2,11 @@ import React, { useState, useEffect} from 'react'
 import { Navbar, ClearanceSignClassList} from "../../organisms";
 import { useLocation } from "react-router-dom";
 import {CloseStatusCard} from "../../molecules"
-import { PageHeader } from '../../atoms';
+import { PageHeader, LoadingComponent } from '../../atoms';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import axios from "axios"
-import {getUserAuth} from '../../auth'
+import {getUserAuth, getAccessToken} from '../../auth'
 import { 
     Container,
     Box
@@ -33,6 +33,7 @@ const StudentRecordC =()=>{
     const [degProgVal, setDegProgVal] = useState("")
     const [sectVal, setSectVal] = useState("")
    
+    const [loading, setLoading] = useState(false)
 
     const handleYearLevel = (event) => {
         setYearLevelVal(event.target.value)
@@ -56,6 +57,7 @@ const StudentRecordC =()=>{
 
     const handleSectVal = (type) => (event)  =>{
         // click event trigger
+        setLoading(true)
         if(type === 1){
             setSectVal(event.target.value)
 
@@ -63,6 +65,7 @@ const StudentRecordC =()=>{
                 axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearanceSign/class-list",{SectionListId : event.target.value, ClearanceSignAccountId: userId})
                 .then(function(response){
                     setClassList(response.data)
+                    setLoading(false)
                 })
                 .catch(function(error){
                     console.log(error)
@@ -74,6 +77,7 @@ const StudentRecordC =()=>{
             .then(function(response){
                 setClassList(response.data)
                 console.log(response.data)
+                setLoading(false)
             })
             .catch(function(error){
                 console.log(error)
@@ -83,10 +87,11 @@ const StudentRecordC =()=>{
 
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
+            const accesstoken = await getAccessToken()
 
-            if (result) {
-                setUserId(result.id)
+            if (accesstoken) {
+                const data = await getUserAuth(accesstoken)
+                setUserId(data.id)
             }
         }
         getData()
@@ -187,8 +192,12 @@ const StudentRecordC =()=>{
                         </Select>
                         </Container>
                         </Box>
-                        
-                        <ClearanceSignClassList data={classList} ClearanceSignAccountId={userId} handleSectVal={handleSectVal()}/>
+
+                        { (loading) ?
+                            <LoadingComponent/>
+                            :
+                            <ClearanceSignClassList data={classList} ClearanceSignAccountId={userId} handleSectVal={handleSectVal()}/>
+                        }
                         
                         </Box>
 

@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import {CloseStatusCard} from "../../molecules"
 import { PageHeader, LoadingComponent } from '../../atoms';
 import axios from "axios"
-import {getUserAuth} from '../../auth'
+import {getUserAuth, getAccessToken} from '../../auth'
 import MenuItem from '@mui/material/MenuItem';
 import {Select, Box, Container} from '@mui/material';
 
@@ -21,6 +21,7 @@ const MyClassI =()=>{
     const [loading, setLoading] = useState(true)
 
     const handleSectionVal = (type) => (event) => {
+        setLoading(true)
         // click event trigger
         if (type=== 1){
             setSectionVal(event.target.value)
@@ -29,6 +30,7 @@ const MyClassI =()=>{
                 {SectionListId: event.target.value, InstructorAccountId: userId})
                     .then(function(response){
                         setClassList(response.data)
+                        setLoading(false)
                     })
                     .catch(function(error){
                         console.log(error)
@@ -39,6 +41,7 @@ const MyClassI =()=>{
                 {SectionListId: sectionVal, InstructorAccountId: userId})
                     .then(function(response){
                         setClassList(response.data)
+                        setLoading(false)
                     })
                     .catch(function(error){
                         console.log(error)
@@ -48,12 +51,13 @@ const MyClassI =()=>{
 
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
+            const accesstoken = await getAccessToken()
 
-            if (result) {
-                setUserId(result.id)
+            if (accesstoken) {
+                const data = await getUserAuth(accesstoken)
+                setUserId(data.id)
 
-                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/section-list",{InstructorAccountId: result.id})
+                axios.post("https://elicom-server-5013ed31e994.herokuapp.com/instructor-section/section-list",{InstructorAccountId: data.id})
                 .then(function(response){
                     setSectList(response.data)
                     setLoading(false)

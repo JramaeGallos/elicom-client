@@ -72,7 +72,7 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                 justifyContent: 'center',
                 alignItems: 'center',
                 }}> 
-            <Container style={{width:"1200px", boxShadow: 2,  marginTop: "10px", marginLeft: "20px", marginRight: "20px"}} 
+            <Container style={{boxShadow: 2, maxWidth: '85%',  marginTop: "10px", marginLeft: "20px", marginRight: "20px"}} 
             elevation={2} >
             <TableContainer component={Paper}>
             <Table size="small">

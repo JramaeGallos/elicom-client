@@ -14,7 +14,7 @@ import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Sidebar from '../sidebar/sidebar'
-import {getUserAuth, userLogout} from '../../auth'
+import {getAccessToken, userLogout, getUserAuth} from '../../auth'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
 import {LogoutModal} from "../../molecules"
@@ -33,19 +33,24 @@ const Navbar = ({getStatus}) => {
 
     const [outModal, setLogoutModal] = useState(false)
 
-    // get authenticated user data from the server
+    const [username, setUsername] = useState()
+    const [userType, setUsertype] = useState()
+
+
     useEffect(()=>{
         const getData = async () => {
-            const result = await getUserAuth()
+            const accesstoken = await getAccessToken()
 
-            if (result) {
-                setUserData(result)
+            if (accesstoken) {
+                const data = await getUserAuth(accesstoken)
+                setUserData(data)
+                setUsername(data.firstName)
+                setUsertype(data.userType)
             }else{
                 navigate('/')
             }
         }
         getData()
-
     }, [navigate, setUserData])
 
     useEffect(()=>{
@@ -85,8 +90,6 @@ const Navbar = ({getStatus}) => {
         setLogoutModal(false)
     }
 
-    const username= userData.firstName
-    const userType= userData.userType
 
     const [state, setState] = React.useState({
         left: false,

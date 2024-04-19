@@ -49,6 +49,7 @@ const ManageRecordR =()=>{
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/management/set-transaction", {isOpenTransaction: status})
             .then(function(response){
                 console.log(response)
+                setInitTranStat(status)
             })
             .catch(function(error){
                 console.log(error)
@@ -60,6 +61,7 @@ const ManageRecordR =()=>{
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/management/set-enrollment", {isOpenEnrollment: status})
             .then(function(response){
                 console.log(response)
+                setInitEnStat(status)
             })
             .catch(function(error){
                 console.log(error)
