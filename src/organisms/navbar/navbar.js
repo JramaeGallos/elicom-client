@@ -104,19 +104,19 @@ const Navbar = ({getStatus}) => {
     }; 
 
     
-    // const theme = createTheme({
-    //     typography: {
-    //       h6: {
-    //         fontSize: 22, // Default font size
-    //         '@media (max-width:600px)': {
-    //           fontSize: 18, // Adjust font size for screens smaller than 600px
-    //         },
-    //         '@media (max-width:400px)': {
-    //           fontSize: 14, // Adjust font size for screens smaller than 400px
-    //         },
-    //       },
-    //     },
-    //   });
+    const theme = createTheme({
+        typography: {
+          h6: {
+            fontSize: 22, // Default font size
+            '@media (max-width:600px)': {
+              fontSize: 20, // Adjust font size for screens smaller than 600px
+            },
+            '@media (max-width:400px)': {
+              fontSize: 18, // Adjust font size for screens smaller than 400px
+            },
+          },
+        },
+      });
 
     return(
         <div> 
@@ -137,16 +137,16 @@ const Navbar = ({getStatus}) => {
                         <Button className="logo-button" onClick={()=>{navigate('/dashboard')}}>
                             <img className="logo" src={logo} alt="logo" />
                         </Button>
-                        {/* <ThemeProvider theme={theme}> */}
+                        <ThemeProvider theme={theme}>
                             <Typography  
                                 fontFamily={"Segoe UI"} 
-                                fontSize={22}  
+                                // fontSize={22}  
                                 // variantMapping={variantMapping}
                                 variant='h6' 
                                 align="left"> 
                                 eLICOM
                             </Typography>
-                        {/* </ThemeProvider> */}
+                        </ThemeProvider>
                     </Box>
 
                     <Box display="flex" flexDirection="row" alignItems="center">
