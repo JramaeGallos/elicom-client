@@ -4,16 +4,17 @@ import { Navbar, SnackbarComp} from "../../organisms";
 import {
     Button,
     Box,
-    Container,
     TextField, 
     Grid,
     InputLabel,
     MenuItem,
     Select,
-    Chip
+    Chip,
+    IconButton
 } from "@mui/material";
 import { useLocation, useNavigate} from 'react-router-dom';
 import axios from "axios"
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const PreRegistrationForm = () =>{
     const { state } = useLocation();
@@ -101,10 +102,8 @@ const PreRegistrationForm = () =>{
         setInputValue(event.target.value);
     };
 
-    const handleInputKeyDown = (event) => {
-        if (event.key === 'Enter' && inputValue) {
-
-            event.preventDefault();
+    const handleInputKeyDown = () => {
+        if (inputValue) {
             setValues([...values, inputValue]);
 
             formData.subjects = formData.subjects + inputValue + "$"
@@ -179,32 +178,19 @@ const PreRegistrationForm = () =>{
             <Navbar/>
             <PageHeader title={"Pre-Registration Form"}/>
 
-            {/* <Box sx={{justifyContent: 'flex-end',  display: 'flex', flexDirection: 'row',marginRight:15}}>
-                <Button 
-                    variant="contained" 
-                    type="submit"
-                    style = {{
-                        width: 250, 
-                        backgroundColor: "#28588C",  
-                        borderRadius:"10px",
-                    }}
-                    // onClick={back}
-                    >
-                        Back
-                </Button>   
-
-            </Box> */}
-
             {(loading) ?
                 <LoadingComponent/>
             :
                 <>        
                 <br></br>
                 <form onSubmit={handleSubmit}>
-                <Grid container spacing={2}>
-                <Grid item xs={6}>
-                <Container maxWidth="sm">
-                    <InputLabel id="select-label"> <b> Student Information </b></InputLabel>
+                <Grid container
+                    spacing={2}
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                <Grid item xs={12} sm={6} style={{marginLeft: 20, marginRight: 20}}>
+                    <InputLabel id="select-label" > <b> Student Information </b></InputLabel>
                     <TextField
                         fullWidth
                         required
@@ -322,8 +308,6 @@ const PreRegistrationForm = () =>{
                         <MenuItem value={formData.civilStatus}></MenuItem>
                         <MenuItem value={"Single"}>Single</MenuItem>
                         <MenuItem value={"Married"}>Married</MenuItem>
-                        <MenuItem value={"Widowed"}>Widowed</MenuItem>
-                        <MenuItem value={"Legally Separated"}>Legally Separated</MenuItem>
                     </Select>
                     <TextField
                         fullWidth
@@ -337,8 +321,31 @@ const PreRegistrationForm = () =>{
                         margin="dense"
                         size='small'
                     />
+
+                    <InputLabel id="select-label" >Temporary Address</InputLabel>
+                    <TextField
+                        fullWidth
+                        required
+                        label='Purok / Barangay / Municipality / Province / Zip Code'
+                        margin='dense'
+                        size='small'
+                        value={formData.temporaryAddress}
+                        name= "temporaryAddress"
+                        onChange={handleChange}
+                    />
+                    <InputLabel id="select-label">Permanent Address</InputLabel>
+                    <TextField
+                        fullWidth
+                        required
+                        label='Purok / Barangay / Municipality / Province / Zip Code'
+                        margin='dense'
+                        size='small'
+                        value={formData.permanentAddress}
+                        name= "permanentAddress"
+                        onChange={handleChange}
+                    />
                     <br></br>
-                    <InputLabel id="select-label"  style={{marginTop: "10px"}}> <b> Academic Information </b></InputLabel>
+                    <InputLabel id="select-label"  style={{marginTop: "15px"}}> <b> Academic Information </b></InputLabel>
                     <TextField
                         size='small'
                         required
@@ -437,49 +444,32 @@ const PreRegistrationForm = () =>{
                             label={value}
                             style={{ margin: '4px' }}
                             />
-                        ))}
-                        <TextField
-                            size='small'
-                            margin='dense'
-                            label="Subjects to Take (Write the full description)*"
-                            variant="outlined"
-                            error={errorSubject}
-                            helperText={errorSubject ? "This a required field" : ""}
-                            value={inputValue}
-                            onChange={handleInputChange}
-                            onKeyDown={handleInputKeyDown}
-                            fullWidth
-                            placeholder="Enter values and press Enter"
-                        />
+                        ))} 
+                        <Box style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'flex-start'
+                        }} >
+                            <TextField
+                                size='small'
+                                margin='dense'
+                                label="Subjects to Take (Write the full description)*"
+                                variant="outlined"
+                                error={errorSubject}
+                                helperText={errorSubject ? "This a required field" : ""}
+                                value={inputValue}
+                                onChange={handleInputChange}
+                                style={{marginRight: 10}}
+                                fullWidth
+                                placeholder="Enter values then add"
+                            />
+                            <IconButton onClick={handleInputKeyDown}>
+                            <AddCircleOutlineIcon />
+                            </IconButton>
+                        </Box>
                     </Box>
-                </Container>
-                </Grid>
-
-                <Grid item xs={6}>
-                <Container maxWidth="sm">
-                <InputLabel id="select-label" >Temporary Address</InputLabel>
-                    <TextField
-                        fullWidth
-                        required
-                        label='Purok / Barangay / Municipality / Province / Zip Code'
-                        margin='dense'
-                        size='small'
-                        value={formData.temporaryAddress}
-                        name= "temporaryAddress"
-                        onChange={handleChange}
-                    />
-                    <InputLabel id="select-label">Permanent Address</InputLabel>
-                    <TextField
-                        fullWidth
-                        required
-                        label='Purok / Barangay / Municipality / Province / Zip Code'
-                        margin='dense'
-                        size='small'
-                        value={formData.permanentAddress}
-                        name= "permanentAddress"
-                        onChange={handleChange}
-                    />
-                    <InputLabel id="select-label" style={{marginTop: "10px"}}> <b> Mother's Name </b></InputLabel>
+            
+                    <InputLabel id="select-label" style={{marginTop: "15px"}}> <b> Mother's Name </b></InputLabel>
                     <TextField
                         fullWidth
                         required
@@ -500,7 +490,7 @@ const PreRegistrationForm = () =>{
                         name= "motherOccupation"
                         onChange={handleChange}
                     />
-                    <InputLabel id="select-label"> <b> Father's Name </b></InputLabel>
+                    <InputLabel id="select-label" style={{marginTop: "15px"}}> <b> Father's Name </b></InputLabel>
                     <TextField
                         fullWidth
                         required
@@ -521,7 +511,7 @@ const PreRegistrationForm = () =>{
                         name= "fatherOccupation"
                         onChange={handleChange}
                     />
-                    <InputLabel id="select-label"> <b> Guardian Information </b></InputLabel>
+                    <InputLabel id="select-label" style={{marginTop: "15px"}}> <b> Guardian Information </b></InputLabel>
                     <TextField
                         fullWidth
                         required
@@ -574,7 +564,8 @@ const PreRegistrationForm = () =>{
                         fullWidth
                         variant="outlined"
                     />
-                    <Box sx={{justifyContent: 'flex-start',  display: 'flex', flexDirection: 'row', marginTop: "10px"}}>
+                    <Box sx={{justifyContent: 'flex-start',  display: 'flex', flexDirection: 'row',
+                         marginTop: "20px", marginBottom: "20px"}}>
                     <Button 
                         variant="contained" 
                         fullWidth
@@ -597,7 +588,7 @@ const PreRegistrationForm = () =>{
                         Submit
                     </Button>
                     </Box>
-                </Container>
+           
                 </Grid>
                 </Grid>
                 </form>
