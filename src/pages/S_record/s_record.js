@@ -69,8 +69,8 @@ const RecordS =()=>{
                             <>
                             <ReminderCard title={"Your records are cleared."}/>
                             <StudentRemarkList 
-                            clearanceRemark={[]} 
-                            InstructorRemark={[]} 
+                            clearanceRemark={clearRemarkList} 
+                            InstructorRemark={instRemarkList} 
                             registrarRemark={regRemarkList}/>
                             </>
                             :
