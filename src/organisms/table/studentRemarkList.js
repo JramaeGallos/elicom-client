@@ -12,15 +12,10 @@ import {
     Typography,
     Box
 } from "@mui/material";
-import { Container, Row, Col, Pagination } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark}) =>{
     const tableHeaders = ["Position", "Name", "Remarks"]
-
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
-    const pageCount = Math.ceil((InstructorRemark.length+ clearanceRemark.length) / rowsPerPage);
-    const paginationItems = [];
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -42,23 +37,6 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
         },
       }));
 
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-
-
-    for (let number = 0; number < Math.min(pageCount, 20); number++) {
-        paginationItems.push(
-        <Pagination.Item key={number} active={number === page} onClick={() => handleChangePage(null, number)}>
-            {number + 1}
-        </Pagination.Item>,
-        );
-    }
 
     const toTitleCase = (str) => {
         return str.replace(/\b\w/g, (char) => char.toUpperCase());
@@ -192,27 +170,6 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                 </TableBody>
             </Table>
             </TableContainer>
-            </Container>
-            {/* table pagination */}
-            <Container style={{marginTop:"10px", width:"1200px"}} >
-                <Row >
-                    <Col>
-                    <div >
-                        <span style={{marginRight:"5px", color:"#6D6262" }}>Rows per page:  </span>
-                        <select className="form-select" style={{width:"15%"}} onChange={handleChangeRowsPerPage} value={rowsPerPage}>
-                        <option value={5}>5</option>
-                        <option value={10}>10</option>
-                        <option value={25}>25</option>
-                        <option value={50}>50</option>
-                        </select>
-                    </div>
-                    </Col>
-                    <Col>
-                    <Pagination className="custom-pagination" style={{marginTop:"15px"}}>
-                        {paginationItems}
-                    </Pagination>
-                    </Col>
-                </Row>
             </Container>
             </Box>
         </div>
