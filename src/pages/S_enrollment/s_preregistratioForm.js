@@ -40,7 +40,6 @@ const PreRegistrationForm = () =>{
         lastName: '',
         middleName: '',
         sex: '',
-        email: '',
         age: '',
         birthDate: '',
         birthPlace: '',
@@ -309,18 +308,6 @@ const PreRegistrationForm = () =>{
                         <MenuItem value={"Single"}>Single</MenuItem>
                         <MenuItem value={"Married"}>Married</MenuItem>
                     </Select>
-                    <TextField
-                        fullWidth
-                        required 
-                        label="Email"
-                        variant="outlined"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        margin="dense"
-                        size='small'
-                    />
 
                     <InputLabel id="select-label" >Temporary Address</InputLabel>
                     <TextField

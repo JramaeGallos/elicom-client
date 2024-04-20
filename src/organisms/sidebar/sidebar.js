@@ -14,6 +14,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 
 import { useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 
 const Sidebar = (props) => {
@@ -90,8 +91,12 @@ const Sidebar = (props) => {
             {setUser().map((text, index) => (
             <ListItem key={text} disablePadding>
                 <ListItemButton onClick={()=>{handleClick(createLink(text.toLowerCase()))}} >
-                    <ListItemIcon> {loadIcon(text.toLowerCase())}</ListItemIcon>
-                    <ListItemText primary={text} fontFamily={"Segoe UI"} />
+                    <ListItemIcon > {loadIcon(text.toLowerCase())}</ListItemIcon>
+                    <ListItemText> 
+                        <Typography color={"#352f36"}>
+                            <b> {text} </b>
+                        </Typography>
+                    </ListItemText>
                 </ListItemButton>
             </ListItem>
             ))}
