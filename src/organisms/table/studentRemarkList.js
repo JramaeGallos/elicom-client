@@ -80,23 +80,35 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                     <TableRow>
                         {
                             (tableHeaders.map((header, index) => {
-                                return <StyledTableCell key={index} align="center"> <b>{header}</b></StyledTableCell>
+                                return <StyledTableCell key={index} align="center"> 
+                                <Typography>
+                                    <b>{header}</b>
+                                </Typography>
+                                </StyledTableCell>
                             }))
                         }
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {(InstructorRemark.length === 0 && clearanceRemark.length ===0 && registrarRemark.length === 0) && 
+                    {(InstructorRemark.length === 0 && clearanceRemark.length ===0 && registrarRemark.length === 0) &&  
                         <StyledTableRow > 
-                            <StyledTableCell align="center" colSpan={3}> No Record </StyledTableCell>
+                            <StyledTableCell align="center" colSpan={3}>
+                                <Typography color={"#6D6262"} > No Record </Typography>
+                            </StyledTableCell>
                         </StyledTableRow>
                     }
                     {(InstructorRemark.length !== 0) &&
                         InstructorRemark.map((remark) => (
                             <StyledTableRow key={remark.dataValues.id}>
-                            <StyledTableCell align='center'>{toTitleCase(remark.position)}</StyledTableCell>
-                            <StyledTableCell align="center">{toTitleCase(remark.firstName) + 
-                                " " + toTitleCase(remark.lastName)}</StyledTableCell>
+                            <StyledTableCell align='center'>
+                                <Typography color={"#6D6262"} >{toTitleCase(remark.position)} </Typography>
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                                <Typography color={"#6D6262"} >
+                                    {toTitleCase(remark.firstName) + 
+                                    " " + toTitleCase(remark.lastName)}
+                                </Typography>
+                            </StyledTableCell>
                             <StyledTableCell align="center">
                                {(remark.dataValues.isClearedMT && remark.dataValues.isClearedFinal) ?
                                     <Typography style={{ color: 'green' }}>
@@ -104,11 +116,11 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                                     </Typography>
                                     :
                                     (remark.dataValues.remark === "") ?
-                                    <Typography >
+                                    <Typography  color={"#6D6262"} >
                                         incomplete
                                     </Typography>
                                     :
-                                    <Typography >
+                                    <Typography  color={"#6D6262"}>
                                      {remark.dataValues.remark.toLowerCase()}
                                     </Typography>
                                }
@@ -119,21 +131,29 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                     {(clearanceRemark.length !==0) &&
                             clearanceRemark.map((remark) => (
                                 <StyledTableRow key={remark.dataValues.id}>
-                                <StyledTableCell align='center'>{toTitleCase(toTitleCase(remark.position))}</StyledTableCell>
-                                <StyledTableCell align="center">{toTitleCase(remark.firstName) + " " + 
-                                    toTitleCase(remark.lastName)}</StyledTableCell>
+                                <StyledTableCell align='center'>
+                                    <Typography  color={"#6D6262"}>
+                                        {toTitleCase(toTitleCase(remark.position))}
+                                    </Typography>
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    <Typography  color={"#6D6262"}>
+                                    {toTitleCase(remark.firstName) + " " + 
+                                    toTitleCase(remark.lastName)}
+                                    </Typography>
+                                </StyledTableCell>
                                 <StyledTableCell align="center">
                                    {(remark.dataValues.isClearedRecord) ?
-                                        <Typography style={{ color: 'green' }}>
+                                        <Typography color={"#6D6262"}  style={{ color: 'green' }}>
                                          complete
                                         </Typography>
                                         :
                                         (remark.dataValues.remark === "") ?
-                                        <Typography >
+                                        <Typography color={"#6D6262"} >
                                          incomplete
                                         </Typography>
                                         :
-                                        <Typography >
+                                        <Typography color={"#6D6262"} >
                                          {remark.dataValues.remark.toLowerCase()}
                                         </Typography>
                                    }
@@ -144,16 +164,24 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                     {(registrarRemark.length !== 0) &&
                             registrarRemark.map((remark) => (
                                 <StyledTableRow key={remark.dataValues.id}>
-                                <StyledTableCell align='center'>{toTitleCase(remark.position)}</StyledTableCell>
-                                <StyledTableCell align="center">{toTitleCase(remark.firstName) + " " +
-                                 toTitleCase(remark.lastName)}</StyledTableCell>
+                                <StyledTableCell align='center'>
+                                    <Typography  color={"#6D6262"}>
+                                        {toTitleCase(remark.position)}
+                                    </Typography>
+                                </StyledTableCell>
+                                <StyledTableCell align="center">
+                                    <Typography  color={"#6D6262"}>
+                                        {toTitleCase(remark.firstName) + " " +
+                                        toTitleCase(remark.lastName)}
+                                    </Typography>
+                                </StyledTableCell>
                                 <StyledTableCell align="center">
                                    {(remark.dataValues.remark === "") ?
-                                        <Typography>
+                                        <Typography color={"#6D6262"} >
                                             no remark
                                         </Typography>
                                         :
-                                        <Typography >
+                                        <Typography color={"#6D6262"} >
                                          {remark.dataValues.remark.toLowerCase()}
                                         </Typography>
                                    }
@@ -170,7 +198,7 @@ const StudentRemarkList = ({clearanceRemark, InstructorRemark, registrarRemark})
                 <Row >
                     <Col>
                     <div >
-                        <span style={{marginRight:"5px"}}>Rows per page:  </span>
+                        <span style={{marginRight:"5px", color:"#6D6262" }}>Rows per page:  </span>
                         <select className="form-select" style={{width:"15%"}} onChange={handleChangeRowsPerPage} value={rowsPerPage}>
                         <option value={5}>5</option>
                         <option value={10}>10</option>
