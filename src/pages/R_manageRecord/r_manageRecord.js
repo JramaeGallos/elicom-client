@@ -50,6 +50,9 @@ const ManageRecordR =()=>{
             .then(function(response){
                 console.log(response)
                 setInitTranStat(status)
+                if(status === false){
+                    setInitEnStat(status)
+                }
             })
             .catch(function(error){
                 console.log(error)
@@ -62,6 +65,9 @@ const ManageRecordR =()=>{
             .then(function(response){
                 console.log(response)
                 setInitEnStat(status)
+                if(status===false){
+                    setInitTranStat(status)
+                }
             })
             .catch(function(error){
                 console.log(error)
