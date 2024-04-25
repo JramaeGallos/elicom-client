@@ -10,7 +10,8 @@ import {
     MenuItem,
     Select,
     Chip,
-    IconButton
+    IconButton,
+    Typography
 } from "@mui/material";
 import { useLocation, useNavigate} from 'react-router-dom';
 import axios from "axios"
@@ -138,14 +139,14 @@ const PreRegistrationForm = () =>{
                         })  
                     }
                 }else{
-                    setResponseMessage("There is an error in submitting the form. Refresh the page and try again.")
+                    setResponseMessage("There is an error in submitting the form. Refresh the page and try again. Make sure that all the fields are complete before submitting.")
                     setResponseState(false)
                     setSnackbarState(true)
                 }             
             })  
             .catch(function(error){
                 console.log(error)
-                setResponseMessage("There is an error in submitting the form. Refresh the page and try again.")
+                setResponseMessage("There is an error in submitting the form. Refresh the page and try again. Make sure that all the fields are complete before submitting.")
                 setResponseState(false)
                 setSnackbarState(true)
             })
@@ -175,6 +176,11 @@ const PreRegistrationForm = () =>{
         <div>
             <Navbar/>
             <PageHeader title={"Pre-Registration Form"}/>
+            <Typography> 
+                <b>Note:</b>
+                Make sure all the fields are cleared before submitting. In case you encounter an error in submitting the form. 
+                Refresh the page and try again.
+            </Typography>
 
             {(loading) ?
                 <LoadingComponent/>
