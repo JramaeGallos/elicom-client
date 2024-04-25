@@ -111,6 +111,7 @@ const PreRegistrationForm = () =>{
     };
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         if(formData.subjects === ''){
             setErrorSubject(true)
         }else{
@@ -149,8 +150,6 @@ const PreRegistrationForm = () =>{
                 setSnackbarState(true)
             })
         }
-
-        e.preventDefault();
     };
 
 
