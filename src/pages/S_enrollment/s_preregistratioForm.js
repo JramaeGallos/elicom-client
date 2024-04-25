@@ -104,6 +104,7 @@ const PreRegistrationForm = () =>{
 
     const handleInputKeyDown = () => {
         if (inputValue) {
+            setErrorSubject(false)
             setValues([...values, inputValue]);
 
             formData.subjects = formData.subjects + inputValue + "$"
@@ -116,7 +117,6 @@ const PreRegistrationForm = () =>{
         if(formData.subjects === ''){
             setErrorSubject(true)
         }else{
-            setErrorSubject(false)
             setLoading(true)
             const data = {...formData, id:studentId}
 
