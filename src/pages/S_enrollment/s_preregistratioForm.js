@@ -189,11 +189,6 @@ const PreRegistrationForm = () =>{
                     alignItems="center"
                 >
                 <Grid item xs={12} sm={6} style={{marginLeft: 20, marginRight: 20}}>
-                <Typography color={"#6D6262"}> 
-                    <b>Note:</b>
-                    Make sure all the fields are cleared before submitting. In case you encounter an error in submitting the form. 
-                    Refresh the page and try again.
-                </Typography>
                     <InputLabel id="select-label" > <b> Student Information </b></InputLabel>
                     <TextField
                         fullWidth
@@ -453,7 +448,7 @@ const PreRegistrationForm = () =>{
                                 onChange={handleInputChange}
                                 style={{marginRight: 10}}
                                 fullWidth
-                                placeholder="Enter values then add"
+                                placeholder="Enter values then click add icon"
                             />
                             <IconButton onClick={handleInputKeyDown}>
                             <AddCircleOutlineIcon />
@@ -556,6 +551,12 @@ const PreRegistrationForm = () =>{
                         fullWidth
                         variant="outlined"
                     />
+                    <Typography color={"#6D6262"} style={{marginTop: "20px"}}> 
+                        <b>Note: </b> 
+                        Make sure all the fields are cleared before clicking the submit button. 
+                        In case you encounter an error in submitting the form, refresh the page and try again.
+                    </Typography>
+
                     <Box sx={{justifyContent: 'flex-start',  display: 'flex', flexDirection: 'row',
                          marginTop: "20px", marginBottom: "20px"}}>
                     <Button 
