@@ -553,7 +553,7 @@ const PreRegistrationForm = () =>{
                     />
                     <Typography color={"#6D6262"} style={{marginTop: "20px"}}> 
                         <b>Note: </b> 
-                        Make sure all the fields are cleared before clicking the submit button. 
+                        Make sure all the fields are complete before clicking the submit button. 
                         In case you encounter an error in submitting the form, refresh the page and try again.
                     </Typography>
 
