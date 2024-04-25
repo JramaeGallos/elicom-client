@@ -176,11 +176,6 @@ const PreRegistrationForm = () =>{
         <div>
             <Navbar/>
             <PageHeader title={"Pre-Registration Form"}/>
-            <Typography> 
-                <b>Note:</b>
-                Make sure all the fields are cleared before submitting. In case you encounter an error in submitting the form. 
-                Refresh the page and try again.
-            </Typography>
 
             {(loading) ?
                 <LoadingComponent/>
@@ -194,6 +189,11 @@ const PreRegistrationForm = () =>{
                     alignItems="center"
                 >
                 <Grid item xs={12} sm={6} style={{marginLeft: 20, marginRight: 20}}>
+                <Typography color={"#6D6262"}> 
+                    <b>Note:</b>
+                    Make sure all the fields are cleared before submitting. In case you encounter an error in submitting the form. 
+                    Refresh the page and try again.
+                </Typography>
                     <InputLabel id="select-label" > <b> Student Information </b></InputLabel>
                     <TextField
                         fullWidth
