@@ -423,7 +423,11 @@ const PreRegistrationForm = () =>{
                         <MenuItem value={"BTVTED Food Service Management"}>BTVTED Food Service Management</MenuItem>
                         </Select>
                     }
-                    
+                    <Typography color={"#6D6262"} style={{marginTop: "5px"}}> 
+                        <b>Note: </b> 
+                        This field has multiple responses depending on the number of subjects you take. 
+                        Enter all your subjects one by one then click the plus icon to add.
+                    </Typography>                    
                     <Box>
                         {(values).map((value, index) => (
                             <Chip
@@ -440,7 +444,7 @@ const PreRegistrationForm = () =>{
                             <TextField
                                 size='small'
                                 margin='dense'
-                                label="Subjects to Take (Write the full description)*"
+                                label="Subjects to take"
                                 variant="outlined"
                                 error={errorSubject}
                                 helperText={errorSubject ? "This a required field" : ""}
@@ -448,7 +452,7 @@ const PreRegistrationForm = () =>{
                                 onChange={handleInputChange}
                                 style={{marginRight: 10}}
                                 fullWidth
-                                placeholder="Enter values then click add icon"
+                                placeholder="Enter subject in full description"
                             />
                             <IconButton onClick={handleInputKeyDown}>
                             <AddCircleOutlineIcon />
