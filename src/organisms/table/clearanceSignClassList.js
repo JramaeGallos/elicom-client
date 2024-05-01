@@ -183,7 +183,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal, se
                         <StyledTableCell align="center"> <b>Student Number</b></StyledTableCell>
                         <StyledTableCell align="center"> <b>Name</b></StyledTableCell>
                         <StyledTableCell align="center"> 
-                            {(data.length !==0 ) ?
+                            {/* (data.length !==0 ) ?
                                 (allTrueRecord)?
                                     <CheckCircleOutlineIcon sx={{color:"green"}}/>
                                     :
@@ -192,8 +192,8 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal, se
                                         onChange={handleCheckAllRecord} 
                                     />
                                 :
-                                <></>
-                            }
+                                <></> */}
+                            
                             <b>{" "}Status</b>
                         </StyledTableCell>
                         <StyledTableCell align="center"> <b>Remarks</b></StyledTableCell>
