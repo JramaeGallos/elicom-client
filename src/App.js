@@ -1,4 +1,3 @@
-import './App.css';
 import axios from "axios";
 import DashboardPage from './pages/dashboard/dashboard';
 import StudentEnrollmentR from './pages/R_studentEnrollment/r_studentEnrollment';

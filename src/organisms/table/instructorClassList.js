@@ -25,7 +25,7 @@ import { TableButtons } from '../../atoms';
 import { AddInstRemarkModal } from "../../molecules"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
+const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLoading}) =>{
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const pageCount = Math.ceil(data.length / rowsPerPage);
@@ -87,6 +87,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     }
 
     const handleMT = (studentId)=>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-mt",
             {
                 StudentAccountId: studentId,
@@ -102,6 +103,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     }
 
     const handleFinal = (studentId)=>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-final",
             {
                 StudentAccountId: studentId,
@@ -126,6 +128,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
     }
 
     const submitRemark = (studentId, remark) =>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-remark",
             {
                 StudentAccountId: studentId,
@@ -143,13 +146,13 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
 
      //function for 'select all row' 
      const handleCheckAllMT=()=>{
-
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-all-mt",
         {
             studentIdList: studentIdArray,
             InstructorAccountId: InstructorAccountId
         }
-        )
+        ) 
         .then(function(response){
             handleSectionVal()
         })
@@ -159,6 +162,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
      }
 
     const handleCheckAllFinal=()=>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/inst-remark/update-all-final",
         {
             studentIdList: studentIdArray,
@@ -214,7 +218,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
                         <StyledTableCell align="center"> <b>Student Number</b></StyledTableCell>
                         <StyledTableCell align="center"> <b>Name</b></StyledTableCell>
                         <StyledTableCell align="center"> 
-                            {(data.length !==0 ) ?
+                            {/* {(data.length !==0 ) ?
                                 (allTrueMT) ? 
                                 <CheckCircleOutlineIcon sx={{color:"green"}}/>
                                 :
@@ -223,12 +227,11 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
                                     onChange={handleCheckAllMT} 
                                 />
                                 :
-                                <></>
-                            }
+                                <></> */}
                             <b>{" "}Midterm</b>
                         </StyledTableCell>
                         <StyledTableCell align="center"> 
-                            {(data.length !==0 ) ?
+                            {/* {(data.length !==0 ) ?
                                 (allTrueFinal) ? 
                                 <CheckCircleOutlineIcon sx={{color:"green"}}/>
                                 :
@@ -237,8 +240,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal}) =>{
                                     onChange={handleCheckAllFinal} 
                                  />
                                 :
-                                <></>
-                            }
+                                <></> */}
                             <b>{" "}Final</b>
                         </StyledTableCell>
                         <StyledTableCell align="center"> <b>Remarks</b></StyledTableCell>

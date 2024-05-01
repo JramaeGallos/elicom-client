@@ -21,7 +21,6 @@ const MyClassI =()=>{
     const [loading, setLoading] = useState(true)
 
     const handleSectionVal = (type) => (event) => {
-        setLoading(true)
         // click event trigger
         if (type=== 1){
             setSectionVal(event.target.value)
@@ -114,7 +113,12 @@ const MyClassI =()=>{
                         </Container>
                         </Box>
 
-                        <InstructorClassList data={classList} InstructorAccountId={userId} handleSectionVal={handleSectionVal()}/>
+                        <InstructorClassList 
+                            data={classList} 
+                            InstructorAccountId={userId} 
+                            handleSectionVal={handleSectionVal()}
+                            setLoading={setLoading}
+                            />
                         </Box>
                     }
                     </div>

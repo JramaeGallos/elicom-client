@@ -25,7 +25,7 @@ import { TableButtons } from '../../atoms';
 import { AddInstRemarkModal } from "../../molecules"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
-const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =>{
+const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal, setLoading}) =>{
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const pageCount = Math.ceil(data.length / rowsPerPage);
@@ -84,6 +84,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =
     }
 
     const handleRecord = (studentId) =>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearance-remark/update-record",
         {
             StudentAccountId: studentId,
@@ -109,6 +110,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =
     }
 
     const submitRemark = (studentId, remark) =>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearance-remark/update-remark",
             {
                 StudentAccountId: studentId,
@@ -126,6 +128,7 @@ const ClearanceSignClassList = ({data, ClearanceSignAccountId, handleSectVal}) =
 
       //function for 'select all row' 
     const handleCheckAllRecord=()=>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/clearance-remark/update-all-record",
         {
             studentIdList: studentIdArray,

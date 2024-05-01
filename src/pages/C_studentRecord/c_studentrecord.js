@@ -57,7 +57,6 @@ const StudentRecordC =()=>{
 
     const handleSectVal = (type) => (event)  =>{
         // click event trigger
-        setLoading(true)
         if(type === 1){
             setSectVal(event.target.value)
 
@@ -196,7 +195,12 @@ const StudentRecordC =()=>{
                         { (loading) ?
                             <LoadingComponent/>
                             :
-                            <ClearanceSignClassList data={classList} ClearanceSignAccountId={userId} handleSectVal={handleSectVal()}/>
+                            <ClearanceSignClassList 
+                                data={classList} 
+                                ClearanceSignAccountId={userId} 
+                                handleSectVal={handleSectVal()}
+                                setLoading={setLoading}
+                                />
                         }
                         
                         </Box>
