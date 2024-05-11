@@ -273,7 +273,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
                                 {/* <TableButtons name={"View More"} handleClickViewMore={handleClickViewMore} info={listOfUser.dataValues}/> */}
                                 <Button 
                                     variant="text"
-                                    onClick={handleClickViewMore(listOfUser.dataValues)}
+                                    onClick={()=>handleClickViewMore(listOfUser.dataValues)}
                                 >
                                     View More
                                 </Button>
