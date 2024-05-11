@@ -254,7 +254,9 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
                         </IconButton>
                     </Box>
                     { (loading) ?
-                        <LoadingComponent/>
+                        <Box>
+                            <LoadingComponent/>
+                        </Box>
                         :
                         <Box sx={{ display:"flex",}}> 
                             <Typography id="modal-modal-description" variant="body1" component="h1"  >
