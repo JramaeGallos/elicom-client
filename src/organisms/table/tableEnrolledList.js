@@ -275,10 +275,3 @@ const TableEnrolledList = ({data, selectedRows, setSelectedRows, type, back, han
 }
 
 export default TableEnrolledList;
-
-//notes:
-//todo: add student to the section (cannot add student twice to the same section)
-// implement single add or group add
-// implement removal of a student from the section
-
-// more: add instructor to the section

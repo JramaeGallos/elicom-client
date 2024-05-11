@@ -22,7 +22,7 @@ import CancelPresentationIcon from '@mui/icons-material/CancelPresentation';
 import { Container, Row, Col, Pagination } from 'react-bootstrap';
 import axios from "axios"
 import { TableButtons } from '../../atoms';
-import { AddInstRemarkModal } from "../../molecules"
+import { AddInstRemarkModal, ViewMoreModal} from "../../molecules"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLoading}) =>{
@@ -30,6 +30,9 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const pageCount = Math.ceil(data.length / rowsPerPage);
     const paginationItems = [];
+
+    const [userInfo, setUserInfo] = useState({})
+    const [viewMoreModal, setViewMoreModal] = useState(false);
 
     const [filteredData, setFilteredData] = useState(data)
 
@@ -181,6 +184,15 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
         return str.replace(/\b\w/g, (char) => char.toUpperCase());
       };
 
+    //function for view more modal
+    const handleClickViewMore = (info)=>{
+        setViewMoreModal(true)
+        setUserInfo(info)
+    }
+
+    const handleCloseViewMore = () => {
+        setViewMoreModal(false)
+    }
 
     return(
         <div>
@@ -217,6 +229,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
                     <TableRow>
                         <StyledTableCell align="center"> <b>Student Number</b></StyledTableCell>
                         <StyledTableCell align="center"> <b>Name</b></StyledTableCell>
+                        <StyledTableCell align="center"> <b>Student Information</b> </StyledTableCell>
                         <StyledTableCell align="center"> 
                             {/* {(data.length !==0 ) ?
                                 (allTrueMT) ? 
@@ -255,6 +268,9 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
                             <StyledTableCell align='center'>{listOfUser.dataValues.studentNumber}</StyledTableCell>
                             <StyledTableCell align="center">{toTitleCase(listOfUser.dataValues.firstName)
                              + " " + toTitleCase(listOfUser.dataValues.lastName)}</StyledTableCell>
+                            <StyledTableCell align="center">
+                                <TableButtons name={"View More"} handleClickViewMore={handleClickViewMore} info={listOfUser.dataValues}/>
+                            </StyledTableCell>
                             <StyledTableCell align="center"> 
                                 {(listOfUser.isClearedMT) ?
                                     <CheckCircleOutlineIcon sx={{color:"green"}}/>
@@ -329,6 +345,12 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
 
             {(remarkModal) &&
                 <AddInstRemarkModal handleCloseAddRemark={handleCloseAddRemark} id={id} submitRemark={submitRemark}/>
+            }
+            {(viewMoreModal) &&
+                <ViewMoreModal
+                    handleCloseViewMore={handleCloseViewMore}
+                    info={userInfo}
+                />
             }
         </div>
 
