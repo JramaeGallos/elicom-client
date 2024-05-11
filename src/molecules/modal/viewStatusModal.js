@@ -9,7 +9,7 @@ import {
     Tooltip
 } from "@mui/material";
 import { useNavigate} from 'react-router-dom';
-import {ClearRecordModal} from "../../atoms"
+import {ClearRecordModal, LoadingComponent} from "../../atoms"
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
@@ -27,6 +27,8 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
     const isNewStudent = statusData.isNewStudent
     const isRegular = statusData.isRegular
     const isVerified = statusData.isVerified
+
+    const [loading, setLoading] = useState(true)
 
     const [textValue, setTextValue] = useState('');
     const [existingRemark, setExistingRemark] = useState()
@@ -51,6 +53,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
     }
 
     const submit =()=>{
+        setLoading(true)
         axios.post("https://elicom-server-5013ed31e994.herokuapp.com/registrar-remark/update-remark",
         {
             StudentAccountId: statusData.id,
@@ -61,6 +64,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
         .then(function(response){
             setExistingRemark(textValue)
             setTextValue("")
+            setLoading(false)
         })
         .catch(function(error){
             console.log(error)
@@ -84,6 +88,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
         )
         .then(function(response){
             setExistingRemark(response.data)
+            setLoading(false)
         })
         .catch(function(error){
             console.log(error)
@@ -248,11 +253,15 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
                             <SendIcon />
                         </IconButton>
                     </Box>
-                    <Box sx={{ display:"flex",}}> 
-                        <Typography id="modal-modal-description" variant="body1" component="h1"  >
-                            <b>Your remark: </b>{(existingRemark==="") ? "no remark" : existingRemark}
-                        </Typography>
-                    </Box>
+                    { (loading) ?
+                        <LoadingComponent/>
+                        :
+                        <Box sx={{ display:"flex",}}> 
+                            <Typography id="modal-modal-description" variant="body1" component="h1"  >
+                                <b>Your remark: </b>{(existingRemark==="") ? "no remark" : existingRemark}
+                            </Typography>
+                        </Box>
+                    }
                     <Box sx={{alignItems:"center", justifyContent:"center", display:"flex", marginTop:"20px" }}>
                         <Button 
                             style={{borderRadius:"15px", marginRight:"10px", backgroundColor: "#28588C"}}
