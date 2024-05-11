@@ -269,7 +269,13 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
                             <StyledTableCell align="center">{toTitleCase(listOfUser.dataValues.firstName)
                              + " " + toTitleCase(listOfUser.dataValues.lastName)}</StyledTableCell>
                             <StyledTableCell align="center">
-                                <TableButtons name={"View More"} handleClickViewMore={handleClickViewMore} info={listOfUser.dataValues}/>
+                                {/* <TableButtons name={"View More"} handleClickViewMore={handleClickViewMore} info={listOfUser.dataValues}/> */}
+                                <Button 
+                                    variant="text"
+                                    onClick={handleClickViewMore(listOfUser.dataValues)}
+                                >
+                                    View More
+                                </Button>
                             </StyledTableCell>
                             <StyledTableCell align="center"> 
                                 {(listOfUser.isClearedMT) ?
@@ -314,7 +320,7 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
                         ))
                         :
                         (<StyledTableRow > 
-                            <StyledTableCell align="center" colSpan={5}> No Class List </StyledTableCell>
+                            <StyledTableCell align="center" colSpan={6}> No Class List </StyledTableCell>
                         </StyledTableRow>)
                     }
                 </TableBody>
