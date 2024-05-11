@@ -254,7 +254,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
                         </IconButton>
                     </Box>
                     { (loading) ?
-                        <Box style={{height: '20px'}}>
+                        <Box style={{height: '50px'}}>
                             <LoadingComponent/>
                         </Box>
                         :
