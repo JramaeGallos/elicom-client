@@ -273,8 +273,10 @@ const InstructorClassList = ({data, InstructorAccountId, handleSectionVal, setLo
                                 {/* <TableButtons name={"View More"} handleClickViewMore={handleClickViewMore} info={listOfUser.dataValues}/> */}
                                 <Button 
                                     variant="text"
-                                    style={{fontSize:11}}
-                                    onClick={()=>handleClickViewMore(listOfUser.dataValues)}
+                                    style={{fontSize:11,
+                                        color: "#28588C", 
+                                    }}
+                                    onClick={()=>handleClickViewMore(listOfUser.dataValues)} 
                                 >
                                     View More
                                 </Button>
