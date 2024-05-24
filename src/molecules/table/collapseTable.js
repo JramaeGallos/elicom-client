@@ -82,7 +82,6 @@ const CollapseTable = ({open, yearLevel, isOpenTransaction}) =>{
         const data ={degreeCode:degreeCode, specializationCode: null, yearLevel: getYearLevel()}
         axios.post(url, data)
         .then(function(response){
-            console.log(response.data)
             setSectionList(response.data)
         })
         .catch(function(error){

@@ -41,8 +41,6 @@ const ViewMoreModal = ({handleCloseViewMore, info}) =>{
         return subject.slice(0, -2)
     }
 
-    console.log(info)
-
     return(
         <Modal
             open={true}

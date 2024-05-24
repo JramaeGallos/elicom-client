@@ -51,7 +51,6 @@ const Login =()=>{
                     setErrorMessage(response.data.error)
                 }else{
                     setErrorMessage("")
-                    console.log(response)
                     setVerified(response.data.success.verified)
                     setUserType(response.data.success.userType)
 
