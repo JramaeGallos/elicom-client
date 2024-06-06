@@ -140,11 +140,11 @@ const AddUserByCSV = ({handleCloseCSV, submitCSV, userType}) =>{
                                 style={{ display: 'none' }}
                                 onChange={handleFileChange}
                             />
-                            <Button variant="outlined" component="span" style={{marginBottom: 5, width:155}}>
+                            <Button variant="outlined" component="span" style={{marginBottom: 5, width:160}}>
                                 Upload CSV File
                             </Button>
                         </label>
-                        <Button variant="outlined" component="span" onClick={()=>handleParse()} style={{width:155}}>
+                        <Button variant="outlined" component="span" onClick={()=>handleParse()} style={{width:160}}>
                                 Submit
                         </Button>
                     </Box>
