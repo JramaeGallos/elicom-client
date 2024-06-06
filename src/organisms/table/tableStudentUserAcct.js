@@ -42,6 +42,7 @@ const TableStudentUserAcct = ({
         enrollmentStatus, 
         viewEnrolled,
         addUser,
+        addUserByCSV,
         back
     })=>{
     const userType="student"
@@ -359,7 +360,22 @@ const TableStudentUserAcct = ({
                     </Button>   
                     </>
                     :
+                    <>
                     <AddUserButton addUser={addUser} />
+                    <Button 
+                        variant="contained" 
+                        type="submit"
+                        style = {{
+                            width: 250, 
+                            backgroundColor: "#28588C",  
+                            borderRadius:"10px",
+                            marginLeft: 5
+                        }}
+                        onClick={addUserByCSV}
+                        >
+                            Add User by CSV  
+                    </Button>
+                    </>
                 }
                 </Container>
             </Box>
@@ -369,7 +385,7 @@ const TableStudentUserAcct = ({
                 alignItems: 'center',
                 }}>
             <TableContainer elevation={2} style={{width:"1200px", marginTop: "20px"}} component={Paper}>
-            {(!enrolled) &&
+            {/* {(!enrolled) &&
                 <Button 
                     type="submit"
                     size='small'
@@ -380,7 +396,7 @@ const TableStudentUserAcct = ({
                     >
                         Enroll All
                 </Button>
-            }
+            } */}
             <Table size="small">
                 <TableHead>
                     <TableRow>

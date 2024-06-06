@@ -12,7 +12,8 @@ import {
     IconButton,
     TextField,
     InputAdornment,
-    Box
+    Box,
+    Button
 } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
@@ -20,7 +21,7 @@ import DeleteUserModal from "../../molecules/modal/deleteModal"
 import { AddUserButton } from '../../atoms';
 import { Container, Row, Col, Pagination } from 'react-bootstrap';
 
-const TableUserAcct = ({data, userType, addUser}) =>{
+const TableUserAcct = ({data, userType, addUser, addUserByCSV}) =>{
     const tableHeadersInst = ["Name", "Employee Number", "Email"]
     const tableHeadersClear = ["Name", "Employee Number", "Position", "Email"]
     const [modalState, setModalState] = useState(false);
@@ -116,6 +117,19 @@ const TableUserAcct = ({data, userType, addUser}) =>{
                     size='small'
                 />
                 <AddUserButton addUser={addUser} />
+                <Button 
+                        variant="contained" 
+                        type="submit"
+                        style = {{
+                            width: 250, 
+                            backgroundColor: "#28588C",  
+                            borderRadius:"10px",
+                            marginLeft: 5
+                        }}
+                        onClick={addUserByCSV}
+                        >
+                            Add User by CSV  
+                    </Button>
                 </Container>
             </Box>
             <Box style={{display: 'flex',

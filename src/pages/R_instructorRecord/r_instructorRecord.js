@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react'
-import { Navbar, AddUserModal, SnackbarComp, TableUserAcct} from "../../organisms";
+import { Navbar, AddUserModal, SnackbarComp, TableUserAcct, ResponseModal} from "../../organisms";
 import { PageHeader, LoadingComponent} from '../../atoms';
 import axios from "axios"
+import { AddUserByCSV } from "../../molecules"
 
 const InstructRecordR =()=>{
     const userType = "instructor"
     const [modalState, setModalState] = useState(false)
+    const [csvModalState, setCsvModalState] = useState(false)
+
     const [snackbarState, setSnackbarState] = useState(false)
     const [responseMessage, setResponseMessage] = useState("")
     const [responseState, setResponseState] = useState(false)
@@ -13,6 +16,18 @@ const InstructRecordR =()=>{
     const [listOfUser, setListOfUser] = useState([])
 
     const [loading, setLoading] = useState(true)
+
+    const [csvResponse, setCSVResponse] = useState([])
+    const [csvUserCnt, setCSVUserCnt] = useState(0)
+    const [userCnt, setUserCnt] = useState(0)
+
+    const addUserByCSV = () =>{
+        setCsvModalState(true)
+    }
+
+    const handleCloseCSV =()=>{
+        setCsvModalState(false)
+    }
 
     const addUser =()=>{
         setModalState(true)
@@ -26,6 +41,54 @@ const InstructRecordR =()=>{
         setSnackbarState(false);
     };
 
+    const [showResModal, setShowResModal] = useState(false);
+
+    const handleOpenResModal = () => {
+        setShowResModal(true);
+    };
+
+    const handleCloseResModal = () => {
+        setShowResModal(false);
+        setCSVResponse([])
+        window.location.reload(false);
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          if ((csvResponse.length !== 0 || userCnt !==0) && csvUserCnt !==0) {
+            handleOpenResModal()
+            setLoading(false)
+          }
+        }, 1000); // Check every 1000ms (1 second)
+    
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
+    }, [csvResponse, userCnt, csvUserCnt]); 
+
+
+    const submitCSV=(data)=>{
+        setCSVUserCnt(data.length)
+        let allCSVResponse = []
+
+        for (const user of data){
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login/register-instructor", user)
+            .then(function(response){
+                console.log(response.data)
+                if (response.data.error){
+                    allCSVResponse.push(response.data.error)
+                }else{
+                    setUserCnt(userCnt+1) // user successfully added
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+            });
+        }
+
+        setCSVResponse(allCSVResponse)
+        handleCloseCSV()
+        setLoading(true)
+    }
     const OnSubmitData = (value) => {
         if (value.success){ 
             const userInput = value.success  
@@ -81,6 +144,10 @@ const InstructRecordR =()=>{
                 <AddUserModal OnSubmitData={OnSubmitData} userType={userType}/>
             }
 
+            {(csvModalState) &&
+                <AddUserByCSV handleCloseCSV={handleCloseCSV} submitCSV={submitCSV} userType={"staff"}/>
+            }
+
             {(snackbarState) &&
                 <SnackbarComp 
                 handleCloseResponse={handleCloseResponse} 
@@ -89,15 +156,16 @@ const InstructRecordR =()=>{
                 responseMessage={responseMessage}
                 />
             }
+
+            <ResponseModal show={showResModal} handleClose={handleCloseResModal} message={csvResponse} csvUserCnt={csvUserCnt}/>
+
             { (loading) ?
                 <LoadingComponent/>
                 :
-                <TableUserAcct data={listOfUser} userType={userType} addUser={addUser}/>
+                <TableUserAcct data={listOfUser} userType={userType} addUser={addUser} addUserByCSV={addUserByCSV}/>
             }
         </div>
     )
 }
 
 export default InstructRecordR
-
-//todo: render user accounts in a table - fix ui

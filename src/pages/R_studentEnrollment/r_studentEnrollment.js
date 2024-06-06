@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { Navbar, SnackbarComp, AddUserModal, TableStudentUserAcct} from "../../organisms";
+import { Navbar, SnackbarComp, AddUserModal, TableStudentUserAcct, ResponseModal} from "../../organisms";
 import {NoteCard} from "../../molecules"
 import {  PageHeader, LoadingComponent} from '../../atoms';
 import axios from "axios"
 import { useNavigate, useLocation} from 'react-router-dom';
 import {getUserAuth, getAccessToken} from '../../auth'
+import { AddUserByCSV } from "../../molecules"
 
 const StudentEnrollmentR =()=>{
     const { state } = useLocation();
@@ -12,9 +13,15 @@ const StudentEnrollmentR =()=>{
 
     const [registrarId, setRegistrarId] = useState()
     const [modalState, setModalState] = useState(false)
+    const [csvModalState, setCsvModalState] = useState(false)
+
     const [snackbarState, setSnackbarState] = useState(false)
     const [responseMessage, setResponseMessage] = useState("")
     const [responseState, setResponseState] = useState(false)
+
+    const [csvResponse, setCSVResponse] = useState([])
+    const [csvUserCnt, setCSVUserCnt] = useState(0)
+    const [userCnt, setUserCnt] = useState(0)
     const [listOfUser, setListOfUser] = useState([])
 
     const [loading, setLoading] = useState(true)
@@ -25,17 +32,71 @@ const StudentEnrollmentR =()=>{
         setModalState(true)
     }
 
+    const addUserByCSV = () =>{
+        setCsvModalState(true)
+    }
+
+    const handleCloseCSV =()=>{
+        setCsvModalState(false)
+    }
+
     const viewEnrolled =()=>{
         navigate('/enrolled-student', {state})
     }
+
+    const [showResModal, setShowResModal] = useState(false);
+
+    const handleOpenResModal = () => {
+        setShowResModal(true);
+    };
+
+    const handleCloseResModal = () => {
+        setShowResModal(false);
+        setCSVResponse([])
+        window.location.reload(false);
+    };
 
     const handleCloseResponse = (event, reason) => {
         if (reason === 'clickaway') {
           return;
         }
-    
         setSnackbarState(false);
       };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          if ((csvResponse.length !== 0 || userCnt !==0) && csvUserCnt !==0) {
+            handleOpenResModal()
+            setLoading(false)
+          }
+        }, 1000); // Check every 1000ms (1 second)
+    
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
+    }, [csvResponse, userCnt, csvUserCnt]); 
+
+
+    const submitCSV = (data) => {
+        setCSVUserCnt(data.length)
+        let allCSVResponse = []
+
+        for (const user of data){
+            axios.post("https://elicom-server-5013ed31e994.herokuapp.com/login/register-student", user)
+            .then(function(response){
+                if (response.data.error){
+                    allCSVResponse.push(response.data.error)
+                }else{
+                    setUserCnt(userCnt+1) // user successfully added
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+            });
+        }
+        setCSVResponse(allCSVResponse)
+        handleCloseCSV()
+        setLoading(true)
+    }
 
     const OnSubmitData = (value) => {
         if (value.success){
@@ -89,6 +150,7 @@ const StudentEnrollmentR =()=>{
         .catch(function(error){
             console.log(error)
         })
+
     },[])
 
     return(
@@ -100,6 +162,13 @@ const StudentEnrollmentR =()=>{
             {(modalState) && 
                 <AddUserModal OnSubmitData={OnSubmitData} userType={userType}/>
             }
+
+            {(csvModalState) &&
+                <AddUserByCSV handleCloseCSV={handleCloseCSV} submitCSV={submitCSV} userType={"student"}/>
+            }
+       
+            <ResponseModal show={showResModal} handleClose={handleCloseResModal} message={csvResponse} csvUserCnt={csvUserCnt}/>
+            
 
             {(snackbarState) &&
                 <SnackbarComp 
@@ -120,6 +189,7 @@ const StudentEnrollmentR =()=>{
                     registrarId={registrarId} 
                     enrollmentStatus={state.enrollmentStatus}
                     addUser={addUser}
+                    addUserByCSV={addUserByCSV}
                     viewEnrolled={viewEnrolled}
                 />
 

@@ -215,7 +215,7 @@ const ViewStatusModal = ({handCloseStatus, statusData, registrarId, enrollmentSt
                                         <IconButton onClick={checkInstructor}>
                                             <EditIcon/> 
                                         </IconButton>
-                                    </Tooltip>
+                                    </Tooltip> 
                                 </Typography>
                         }
                     </Box>
